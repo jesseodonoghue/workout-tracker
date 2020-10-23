@@ -97,6 +97,7 @@ function validateInputs() {
 
 async function handleFormSubmit(event) {
   event.preventDefault();
+  console.log("[DEBUG] - handleFormSubmit Event started");
 
   let workoutData = {};
 
@@ -114,14 +115,18 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 
+  console.log("[DEBUG] - Here I am");
   await API.addExercise(workoutData);
+  console.log("[DEBUG] - I'm also here");
   clearInputs();
   toast.classList.add("success");
+  console.log("[DEBUG] - handleFormSubmit Event completed successfully");
 }
 
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
+    console.log("[DEBUG] - handleToastAnimationEnd Event completed successfully");
     location.href = "/";
   }
 }
@@ -135,6 +140,7 @@ function clearInputs() {
   repsInput.value = "";
   resistanceDurationInput.value = "";
   weightInput.value = "";
+
 }
 
 if (workoutTypeSelect) {
@@ -143,6 +149,8 @@ if (workoutTypeSelect) {
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
     shouldNavigateAway = true;
+    console.log("[DEBUG] - Complete Button clicked");
+    console.log("[DEBUG] - shouldNavigateAway = " + shouldNavigateAway);
     handleFormSubmit(event);
   });
 }

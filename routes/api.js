@@ -32,6 +32,7 @@ router.put("/api/workouts/:id", ({
     })
     .then(res => {
         console.log("result", res)
+        res.json(res);
     })
     .catch((err) => {
         res.json(err);
